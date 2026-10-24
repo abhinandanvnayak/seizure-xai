@@ -1,0 +1,178 @@
+{
+ "chb01": {
+  "n_seizures": 1,
+  "hits": 1,
+  "sensitivity": 1.0,
+  "false_alarms": 14,
+  "interictal_hours": 12.257777777777777,
+  "fah": 1.1421319796954315,
+  "random_sensitivity": 0.32007269818852824,
+  "p_value": 0.32007269818852824,
+  "threshold": 1.9641675889015195
+ },
+ "chb03": {
+  "n_seizures": 1,
+  "hits": 1,
+  "sensitivity": 1.0,
+  "false_alarms": 4,
+  "interictal_hours": 1.84,
+  "fah": 2.1739130434782608,
+  "random_sensitivity": 0.19038908767490015,
+  "p_value": 0.19038908767490015,
+  "threshold": 1.7212615381240846
+ },
+ "chb04": {
+  "n_seizures": 1,
+  "hits": 1,
+  "sensitivity": 1.0,
+  "false_alarms": 28,
+  "interictal_hours": 54.888888888888886,
+  "fah": 0.5101214574898786,
+  "random_sensitivity": 0.22079612584501873,
+  "p_value": 0.22079612584501873,
+  "threshold": 3.9558002252578763
+ },
+ "chb05": {
+  "n_seizures": 1,
+  "hits": 0,
+  "sensitivity": 0.0,
+  "false_alarms": 15,
+  "interictal_hours": 14.115555555555556,
+  "fah": 1.0626574307304786,
+  "random_sensitivity": 0.3772596104322006,
+  "p_value": 1.0,
+  "threshold": 1.9313171243965626
+ },
+ "chb06": {
+  "n_seizures": 3,
+  "hits": 2,
+  "sensitivity": 0.6666666666666666,
+  "false_alarms": 18,
+  "interictal_hours": 17.84,
+  "fah": 1.0089686098654709,
+  "random_sensitivity": 0.24879564882421923,
+  "p_value": 0.15489728411360917,
+  "threshold": 1.803942224931717
+ },
+ "chb07": {
+  "n_seizures": 1,
+  "hits": 1,
+  "sensitivity": 1.0,
+  "false_alarms": 0,
+  "interictal_hours": 0.0,
+  "fah": NaN,
+  "random_sensitivity": 0.7255821812973917,
+  "p_value": 0.7255821812973917,
+  "threshold": 2.6782296709537503
+ },
+ "chb08": {
+  "n_seizures": 1,
+  "hits": 1,
+  "sensitivity": 1.0,
+  "false_alarms": 3,
+  "interictal_hours": 2.1955555555555555,
+  "fah": 1.3663967611336032,
+  "random_sensitivity": 0.3084725684385806,
+  "p_value": 0.3084725684385806,
+  "threshold": 1.8478147979259492
+ },
+ "chb09": {
+  "n_seizures": 1,
+  "hits": 0,
+  "sensitivity": 0.0,
+  "false_alarms": 0,
+  "interictal_hours": 0.0,
+  "fah": NaN,
+  "random_sensitivity": 0.5183412872295876,
+  "p_value": 1.0,
+  "threshold": 2.6875076735496513
+ },
+ "chb10": {
+  "n_seizures": 3,
+  "hits": 0,
+  "sensitivity": 0.0,
+  "false_alarms": 1,
+  "interictal_hours": 0.6311111111111111,
+  "fah": 1.5845070422535212,
+  "random_sensitivity": 0.0879123292830537,
+  "p_value": 1.0,
+  "threshold": 1.7519261643886566
+ },
+ "chb11": {
+  "n_seizures": 1,
+  "hits": 0,
+  "sensitivity": 0.0,
+  "false_alarms": 0,
+  "interictal_hours": 0.0,
+  "fah": NaN,
+  "random_sensitivity": 0.509350529963566,
+  "p_value": 1.0,
+  "threshold": 2.386261502742767
+ },
+ "chb14": {
+  "n_seizures": 2,
+  "hits": 2,
+  "sensitivity": 1.0,
+  "false_alarms": 17,
+  "interictal_hours": 9.306666666666667,
+  "fah": 1.826647564469914,
+  "random_sensitivity": 0.3728964638383463,
+  "p_value": 0.1390517727431431,
+  "threshold": 1.4133149320363998
+ },
+ "chb15": {
+  "n_seizures": 2,
+  "hits": 2,
+  "sensitivity": 1.0,
+  "false_alarms": 4,
+  "interictal_hours": 2.0533333333333332,
+  "fah": 1.9480519480519483,
+  "random_sensitivity": 0.29705005441016064,
+  "p_value": 0.08823873482507939,
+  "threshold": 1.5280144703388217
+ },
+ "chb17": {
+  "n_seizures": 1,
+  "hits": 0,
+  "sensitivity": 0.0,
+  "false_alarms": 7,
+  "interictal_hours": 10.133333333333333,
+  "fah": 0.6907894736842105,
+  "random_sensitivity": 0.12288650404098733,
+  "p_value": 1.0,
+  "threshold": 2.447692423439025
+ },
+ "chb19": {
+  "n_seizures": 1,
+  "hits": 1,
+  "sensitivity": 1.0,
+  "false_alarms": 0,
+  "interictal_hours": 0.0,
+  "fah": NaN,
+  "random_sensitivity": 0.5574568881207962,
+  "p_value": 0.5574568881207962,
+  "threshold": 1.7361210350990297
+ },
+ "chb20": {
+  "n_seizures": 1,
+  "hits": 1,
+  "sensitivity": 1.0,
+  "false_alarms": 0,
+  "interictal_hours": 0.0,
+  "fah": NaN,
+  "random_sensitivity": 0.6208515971173677,
+  "p_value": 0.6208515971173677,
+  "threshold": 1.6054199603557586
+ },
+ "chb22": {
+  "n_seizures": 1,
+  "hits": 0,
+  "sensitivity": 0.0,
+  "false_alarms": 3,
+  "interictal_hours": 2.7555555555555555,
+  "fah": 1.0887096774193548,
+  "random_sensitivity": 0.05038664089560896,
+  "p_value": 1.0,
+  "threshold": 2.756416431546212
+ }
+}

@@ -1,0 +1,7 @@
+dataset/
+cache/
+.venv/
+__pycache__/
+*.log
+overnight.done
+*.pth
