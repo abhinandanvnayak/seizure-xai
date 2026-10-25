@@ -111,3 +111,13 @@ def covered_targets(targets, x, p: Protocol, bin_s=1, min_frac=0.5):
         if len(seg) and np.isfinite(seg).sum() * bin_s >= min_frac * p.sop:
             keep.append((on, off))
     return keep
+
+
+def seizure_outcomes(alarms, test_targets, p: Protocol):
+    """Per test seizure: onset/end, whether an alarm fell in [onset-SPH-SOP, onset-SPH], and the first such alarm time."""
+    out = []
+    for on, off in test_targets:
+        a = alarms[(alarms >= on - p.sph - p.sop) & (alarms <= on - p.sph)]
+        out.append(dict(onset=float(on), end=float(off), detected=bool(len(a)),
+                        first_alarm=float(a[0]) if len(a) else None))
+    return out

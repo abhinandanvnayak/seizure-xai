@@ -62,6 +62,8 @@ for pat in a.patients:
     res = pr.evaluate(alarms, times[te], seizures, test_targets, P)
     rate = len(alarms) / max(1e-9, (times[te][-1] - times[te][0]) / 3600)
     res.update(pr.poisson_baseline(rate, res["n_seizures"], res["hits"], P), threshold=float(thr))
+    res.update(seizures=pr.seizure_outcomes(alarms, test_targets, P), alarms=[float(t) for t in alarms],
+               train_end=float(train_end))
     results[pat] = res
     print(pat, json.dumps(res, default=float))
 

@@ -13,6 +13,7 @@ import json
 import sys
 from pathlib import Path
 
+import joblib
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 
@@ -115,6 +116,13 @@ for test in a.patients:
     res = pr.evaluate(alarms, t[te], d["sz"], test_targets, P)
     rate = len(alarms) / max(1e-9, (t[te][-1] - t[te][0]) / 3600)
     res.update(pr.poisson_baseline(rate, res["n_seizures"], res["hits"], P), threshold=float(thr))
+    res.update(seizures=pr.seizure_outcomes(alarms, test_targets, P), alarms=[float(t) for t in alarms],
+               train_end=float(train_end))
+    Path("models").joinpath(a.model).mkdir(parents=True, exist_ok=True)
+    joblib.dump(dict(clf=clf, mu=mu, sd=sd, threshold=float(thr), train_end=float(train_end),
+                     smooth_steps=max(1, a.smooth_s // 10), window_s=10, patient=test,
+                     train_patients=[q for q in data if q != test]),
+                f"models/{a.model}/{test}.joblib")
     results[test] = res
     print(test, json.dumps(res, default=float), flush=True)
 
