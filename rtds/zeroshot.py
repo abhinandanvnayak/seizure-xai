@@ -22,13 +22,15 @@ def load_timesfm(cfg: ZeroShot, device=None):
     return model
 
 
-def score_series(x, cfg: ZeroShot = ZeroShot(), model=None):
+def score_series(x, cfg: ZeroShot = ZeroShot(), model=None, forecast_fn=None):
     """Return (times, scores): score at time t uses x[t-context:t] to forecast x[t:t+horizon].
 
     Score = MAE of the median forecast, scaled by the context's median absolute deviation.
     Steps whose context or horizon touch NaN are skipped (NaN score).
     """
-    model = model or load_timesfm(cfg)
+    if forecast_fn is None:        # default: TimesFM; any fn(list_of_contexts, horizon) -> (n, horizon) works
+        model = model or load_timesfm(cfg)
+        forecast_fn = lambda ctx, h: model.forecast(horizon=h, inputs=ctx)[0]
     starts = np.arange(cfg.context, len(x) - cfg.horizon, cfg.stride)
     ok = np.array([not np.isnan(x[s - cfg.context:s + cfg.horizon]).any() for s in starts])
     scores = np.full(len(starts), np.nan, np.float32)
@@ -36,7 +38,7 @@ def score_series(x, cfg: ZeroShot = ZeroShot(), model=None):
     for b in range(0, len(todo), cfg.batch):
         ii = todo[b:b + cfg.batch]
         ctx = [x[starts[i] - cfg.context:starts[i]] for i in ii]
-        point, _ = model.forecast(horizon=cfg.horizon, inputs=ctx)
+        point = forecast_fn(ctx, cfg.horizon)
         for k, i in enumerate(ii):
             s = starts[i]
             mad = np.median(np.abs(ctx[k] - np.median(ctx[k]))) + 1e-3

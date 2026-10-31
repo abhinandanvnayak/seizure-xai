@@ -67,10 +67,10 @@ def calibrate(times, scores, train_mask, target_fah, refractory):
 
 def raise_alarms(times, scores, thr, refractory):
     out, last = [], -np.inf
-    for t, s in zip(times, scores):
-        if s >= thr and t - last >= refractory:
-            out.append(t)
-            last = t
+    for i in np.flatnonzero(np.asarray(scores) >= thr):
+        if times[i] - last >= refractory:
+            out.append(times[i])
+            last = times[i]
     return np.array(out)
 
 

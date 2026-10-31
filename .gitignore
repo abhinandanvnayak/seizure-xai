@@ -6,3 +6,4 @@ __pycache__/
 overnight.done
 *.pth
 share/
+.DS_Store

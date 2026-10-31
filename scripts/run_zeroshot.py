@@ -17,7 +17,8 @@ ap = argparse.ArgumentParser()
 ap.add_argument("patients", nargs="+")
 ap.add_argument("--data", default="dataset")
 ap.add_argument("--cache", default="cache")
-ap.add_argument("--out", default="results_zeroshot.json")
+ap.add_argument("--forecaster", default="timesfm", choices=["timesfm", "chronos"])
+ap.add_argument("--out", default=None)
 a = ap.parse_args()
 for _p in list(a.patients):
     if not chb.has_times(Path(a.data) / _p / f"{_p}-summary.txt"):
@@ -29,7 +30,7 @@ cache = Path(a.cache)
 cache.mkdir(exist_ok=True)
 model, results = None, {}
 for pat in a.patients:
-    f = cache / f"{pat}_zs.npz"
+    f = cache / (f"{pat}_zs.npz" if a.forecaster == "timesfm" else f"{pat}_zs_{a.forecaster}.npz")
     fx = cache / f"{pat}_x.npz"
     if fx.exists():
         d = np.load(fx)
@@ -45,8 +46,13 @@ for pat in a.patients:
         d = np.load(f)
         times, scores = d["times"], d["scores"]
     else:
-        model = model or zeroshot.load_timesfm(Z)
-        times, scores = zeroshot.score_series(x, Z, model)
+        if a.forecaster == "chronos":
+            from rtds import seriesmodels
+            model = model or seriesmodels.chronos_forecaster()
+            times, scores = zeroshot.score_series(x, Z, forecast_fn=model)
+        else:
+            model = model or zeroshot.load_timesfm(Z)
+            times, scores = zeroshot.score_series(x, Z, model)
         np.savez(f, times=times, scores=scores)
     valid = ~np.isnan(scores)
     times, scores = times[valid], pr.smooth(scores[valid], P.smooth_steps)
@@ -77,4 +83,4 @@ def pooled(rs, label):
 
 pooled(list(results.values()), "all")
 pooled([r for r in results.values() if r["interictal_hours"] >= 1], "interictal>=1h")
-Path(a.out).write_text(json.dumps(results, indent=1, default=float))
+Path(a.out or ("results_zeroshot.json" if a.forecaster == "timesfm" else f"results_{a.forecaster}.json")).write_text(json.dumps(results, indent=1, default=float))
